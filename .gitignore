@@ -1,0 +1,17 @@
+# .gitignore
+
+# Ambientes virtuais
+.venv/
+venv/
+
+# Arquivos do PyCharm
+.idea/
+
+# Arquivos de cache do Python
+__pycache__/
+*.pyc
+
+# <<< ADICIONE A LINHA ABAIXO >>>
+# Ignorar arquivos de credenciais
+gcp-credentials.json
+*.json
