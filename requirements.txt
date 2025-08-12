@@ -1,0 +1,12 @@
+streamlit
+pandas
+numpy
+plotly
+google-cloud-firestore
+google-cloud-bigquery
+db-dtypes
+google-cloud-bigquery-storage
+google-generativeai
+Pillow
+pydub
+moviepy

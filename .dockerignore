@@ -1,0 +1,10 @@
+# .dockerignore
+.venv
+.idea
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.DS_Store
+.streamlit/secrets.toml
+gcp-credentials.json
