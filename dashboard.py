@@ -3,6 +3,10 @@ import os
 import streamlit as st
 from google.cloud import firestore
 
+CREDENTIALS_PATH = "gcp-credentials.json"
+
+
+
 # Adiciona a pasta raiz do projeto ao caminho do Python
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__)))
 if project_root not in sys.path:
@@ -55,6 +59,21 @@ exibe_gestao_pedidos = False
 gmv_metas = {}
 tpv_metas = {}
 try:
+    # Inicializa o cliente explicitamente com as credenciais
+    db = firestore.Client.from_service_account_json(CREDENTIALS_PATH)
+
+    people_doc = db.collection('peoples').document(people_id).get()
+    # ... (resto da lógica do Firestore) ...
+except FileNotFoundError:
+    # Se o arquivo não for encontrado, tenta a autenticação padrão
+    db = firestore.Client()
+    people_doc = db.collection('peoples').document(people_id).get()
+    # ... (copie a lógica de processamento do people_doc aqui também) ...
+except Exception as e:
+    st.error(f"Erro ao buscar dados no Firestore: {e}")
+    st.stop()
+"""
+try:
     db = firestore.Client()
     people_doc = db.collection('peoples').document(people_id).get()
     if people_doc.exists:
@@ -72,6 +91,7 @@ try:
 except Exception as e:
     st.error(f"Erro ao buscar dados no Firestore: {e}")
     st.stop()
+"""
 
 if 'page_number' not in st.session_state:
     st.session_state.page_number = 0
