@@ -4,21 +4,9 @@ import streamlit as st
 from google.cloud import bigquery
 import pandas as pd
 
-CREDENTIALS_PATH = "gcp-credentials.json"
-
-# Inicializa o cliente explicitamente com as credenciais
-try:
-    client = bigquery.Client.from_service_account_json(CREDENTIALS_PATH)
-except FileNotFoundError:
-    # Se o arquivo não for encontrado, tenta a autenticação padrão (útil para dev local)
-    client = bigquery.Client()
-except Exception as e:
-    st.error(f"Erro ao inicializar o cliente BigQuery: {e}")
-    st.stop()
-
 # A inicialização do cliente pode ficar fora das funções,
 # pois só precisa ser feita uma vez.
-#client = bigquery.Client()
+client = bigquery.Client()
 
 
 # --- FUNÇÕES DE BUSCA DE DADOS (COM CACHE) ---
