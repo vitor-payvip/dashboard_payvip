@@ -7,7 +7,6 @@ from datetime import datetime, timedelta
 from functions.fc_dash_vendas import dados_gestao_pedidos
 from tabs.utils import cores_payvip
 
-
 # --- FUNÇÃO HELPER PARA FORMATAR VALORES DO GRÁFICO ---
 def formatar_valor_abreviado(valor):
     if valor >= 1000000:

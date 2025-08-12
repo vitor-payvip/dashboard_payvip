@@ -1,8 +1,5 @@
-# dashboard.py
-
 import sys
 import os
-import asyncio
 import streamlit as st
 from google.cloud import firestore
 
@@ -10,10 +7,6 @@ from google.cloud import firestore
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__)))
 if project_root not in sys.path:
     sys.path.append(project_root)
-
-# --- CORREÇÃO PARA DEBUG NO PYCHARM/WINDOWS ---
-if sys.platform == 'win32':
-    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
 # --- IMPORTAÇÕES ---
 try:
