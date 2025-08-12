@@ -1,20 +1,18 @@
-# Dockerfile
-
 FROM python:3.12-slim
 
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
 
 WORKDIR /app
-
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
-
 COPY . .
 
-# <<< MUDANÇA: REMOVA A LINHA ABAIXO >>>
-# ENV GOOGLE_APPLICATION_CREDENTIALS=/app/gcp-credentials.json
+EXPOSE 8080
 
-EXPOSE 8501
-
-CMD ["python", "-m", "streamlit", "run", "dashboard.py", "--server.port", "8501", "--server.enableCORS", "false"]
+CMD ["sh", "-c", "streamlit run dashboard.py \
+  --server.port $PORT \
+  --server.address 0.0.0.0 \
+  --server.headless true \
+  --server.enableCORS false \
+  --server.enableXsrfProtection false"]
